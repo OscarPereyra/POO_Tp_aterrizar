@@ -11,6 +11,7 @@ public class FechaTest {
 	public void stringADateIso_ConvierteStringAIso () throws ParseException {
 		Fecha nueva = new Fecha();
 		nueva.stringADateIso("2019/12/10");
+		@SuppressWarnings("deprecation")
 		Date dateIso = new Date(119, 11, 10);
 		Assert.assertEquals(dateIso, nueva.fecha);
 	}
@@ -23,6 +24,7 @@ public class FechaTest {
 	public void stringADateLatino_ConvierteStringALatino () throws ParseException {
 		Fecha nueva = new Fecha();
 		nueva.stringADateLatino("1/02/2019");
+		@SuppressWarnings("deprecation")
 		Date dateLatino = new Date(119, 1, 1);
 		Assert.assertEquals(dateLatino, nueva.fecha);
 	}
@@ -35,6 +37,7 @@ public class FechaTest {
 	public void stringADateNorteamericano_ConvierteStringANorteamericano () throws ParseException {
 		Fecha nueva = new Fecha();
 		nueva.stringADateNorteamericano("12/31/2019");
+		@SuppressWarnings("deprecation")
 		Date dateNorteamericano = new Date(119, 11, 12);
 		Assert.assertEquals(dateNorteamericano, nueva.fecha);
 	}
