@@ -16,13 +16,14 @@ public class FechaTest {
 		nueva.stringADateIso("2019/12/10");
 		Calendar fechaIso = Calendar.getInstance();
 		fechaIso.set(2019, 12, 10);
-		Assert.assertEquals(fechaIso.getTime(), nueva.getFecha());
+		Assert.assertEquals("No es la fecha esperada",fechaIso.getTime(), nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateIso_ConvierteStringErroneoAIso() throws ParseException {
 		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("2019/1/aa"));
+		nueva.stringADateIso("2019/1/aa");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
@@ -31,13 +32,14 @@ public class FechaTest {
 		nueva.stringADateLatino("1/02/2019");
 		Calendar fechaLatino = Calendar.getInstance();
 		fechaLatino.set(2019, 02, 01);
-		Assert.assertEquals(fechaLatino.getTime(), nueva.getFecha());
+		Assert.assertEquals("No es la fecha esperada",fechaLatino.getTime(), nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateLatino_ConvierteStringErroneoALatino() throws ParseException {
 		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateLatino("2019/1/aa"));
+		nueva.stringADateLatino("aa/02/2019");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
@@ -46,49 +48,35 @@ public class FechaTest {
 		nueva.stringADateNorteamericano("12/31/2019");
 		Calendar fechaNorteamericano = Calendar.getInstance();
 		fechaNorteamericano.set(2019, 12, 31);
-		Assert.assertEquals(fechaNorteamericano.getTime(), nueva.getFecha());
+		Assert.assertEquals("No es la fecha esperada",fechaNorteamericano.getTime(), nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateNorteamericano_ConvierteStringErroneoANorteamericano() throws ParseException {
 		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateNorteamericano("aa/02/2019"));
+		nueva.stringADateNorteamericano("12/31/2019");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateFlexible_ConvierteStringAIso() throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("2019/12/01");
+		nueva.stringADateFlexible("2019/12/10");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateFlexible_ConvierteStringALatino() throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("01/12/2019");
-	}
-
-	@Test
-	public void stringADateFlexible_ConvierteStringANorteamericano() throws ParseException {
-		Fecha nueva = new Fecha();
-		nueva.stringADateIso("31/11/2019");
+		nueva.stringADateFlexible("1/02/2019");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
 	public void stringADateFlexible_ConvierteStringErroneoAIso() throws ParseException {
 		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("01/a2/2019"));
-	}
-
-	@Test
-	public void stringADateFlexible_ConvierteStringErroneoALatino() throws ParseException {
-		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("01/a2/2019"));
-	}
-
-	@Test
-	public void stringADateFlexible_ConvierteStringErroneoANorteamericano() throws ParseException {
-		Fecha nueva = new Fecha();
-		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("31/a1/2019"));
+		nueva.stringADateIso("01/a2/2019");
+		Assert.assertNull("No es un formato compatible", nueva.getFecha());
 	}
 
 	@Test
